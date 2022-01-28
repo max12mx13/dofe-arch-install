@@ -19,42 +19,42 @@ The distro that will be installed is [arch linux](https://archlinux.org/) and it
 <p align="center">Catppuccin:</p>
 <p align="center">
 
-![Catppuccin theme display](/home/max/Documents/dofe/week1/assets/catppuccin.png)
+![Catppuccin theme display](assets/catppuccin.png)
 </p>
 
 
 <p align="center">Nordic:</p>
 <p align="center">
 
-![Nordic theme display](/home/max/Documents/dofe/week1/assets/Nordic.png)
+![Nordic theme display](assets/Nordic.png)
 </p>
 
 
 <p align="center">Arc-dark:</p>
 <p align="center">
 
-![Arc-dark theme display](/home/max/Documents/dofe/week1/assets/Arc.png)
+![Arc-dark theme display](assets/Arc.png)
 </p>
 
 
 <p align="center"Ant-dracula:</p>
 <p align="center">
 
-![Ant-dracula theme display](/home/max/Documents/dofe/week1/assets/ant-dracula.png)
+![Ant-dracula theme display](assets/ant-dracula.png)
 </p>
 
 
 <p align="center">Dracula:</p>
 <p align="center"
 
-![Dracula theme display](/home/max/Documents/dofe/week1/assets/dracula.png)
+![Dracula theme display](ssets/dracula.png)
 </p>
 
 
 <p align="center">Gruvbox-dark</p>
 <p align="center">
 
-![Gruvbox-dark theme display](/home/max/Documents/dofe/week1/assets/gruvbox,noshell.png)
+![Gruvbox-dark theme display](assets/gruvbox,noshell.png)
 </p>
 
 ## Warnings
