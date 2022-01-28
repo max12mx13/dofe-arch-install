@@ -47,7 +47,7 @@ The distro that will be installed is [arch linux](https://archlinux.org/) and it
 <p align="center">Dracula:</p>
 <p align="center"
 
-![Dracula theme display](asets/dracula.png)
+![Dracula theme display](assets/dracula.png)
 </p>
 
 
