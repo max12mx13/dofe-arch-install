@@ -26,14 +26,14 @@ The distro that will be installed is [arch linux](https://archlinux.org/) and it
 <p align="center">Nordic:</p>
 <p align="center">
 
-![Nordic theme display](assets/Nordic.png)
+![Nordic theme display](assets/nordic.png)
 </p>
 
 
 <p align="center">Arc-dark:</p>
 <p align="center">
 
-![Arc-dark theme display](assets/Arc.png)
+![Arc-dark theme display](assets/arc.png)
 </p>
 
 
@@ -47,7 +47,7 @@ The distro that will be installed is [arch linux](https://archlinux.org/) and it
 <p align="center">Dracula:</p>
 <p align="center"
 
-![Dracula theme display](ssets/dracula.png)
+![Dracula theme display](asets/dracula.png)
 </p>
 
 
