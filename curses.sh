@@ -32,20 +32,20 @@ esac
 sleep 4
 
 #make the file systems
-mkfs.ext4 /dev/sda3
-mkswap /dev/sda2
-mkfs.fat -F 32 /dev/sda1
+mkfs.ext4 /dev/vda3
+mkswap /dev/vda2
+mkfs.fat -F 32 /dev/vda1
 
 #mount root and swap 
-mount /dev/sda3 /mnt
-swapon /dev/sda2
+mount /dev/vda3 /mnt
+swapon /dev/vda2
 
 #install needed packages in new install
 pacstrap /mnt base linux linux-firmware linux-headers vim networkmanager sudo git grub os-prober efibootmgr xdg-user-dirs
 
 #mount efi
 mkdir /mnt/boot/efi
-mount /dev/sda1 /mnt/boot/efi
+mount /dev/vda1 /mnt/boot/efi
 
 #generate the fstab 
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -87,11 +87,9 @@ EndSection
 END
 
 os-prober
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-install --target=i386-pc /dev/vda1
 sudo sed -e s/quiet//g -i /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
-
-pacman --noconfirm --needed -S broadcom-wl-dkms
 
 su ${username}
 cd
