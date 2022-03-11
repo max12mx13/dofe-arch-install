@@ -7,8 +7,6 @@ In both scripts options will be presented to the user. In the install script the
 * password
 * root password
 * hostname
-* what disk they want the boot partition to be on
-* what disk they want the root partition to be on
 
 In the configuration script the user will be asked which themes they want to install and which theme they want enabled by default.
 
@@ -73,9 +71,9 @@ chmod +x curses.sh
 ### Git
 - [x] Create nice README.md (what you are reading now)
 ### Install script
-- [ ] First bits of the install script (Disks and installing base)
-- [ ] Finishing install script (other stuff in a chroot)
-- [ ] Documenting and debugging code
+- [x] First bits of the install script (Disks and installing base)
+- [x] Finishing install script (other stuff in a chroot)
+- [x] Documenting and debugging code
 - [ ] Testing in a vm and recording
 ### Theming
 - [ ] Create TUI for theming options
