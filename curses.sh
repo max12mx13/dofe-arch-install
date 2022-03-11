@@ -86,8 +86,7 @@ Section "InputClass"
 EndSection
 END
 
-os-prober
-grub-install --target=i386-pc /dev/vda1
+grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB
 sudo sed -e s/quiet//g -i /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
