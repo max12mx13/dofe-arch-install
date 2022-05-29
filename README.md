@@ -92,7 +92,7 @@ cd Documents
 
 ## Films of tests
 ### Install in vm
-<img src="assets/untitled.gif" width="40" height="40" />
+<img src="assets/untitled.gif" width="200" height="200" />
 
 ## Credits
 [Ant](https://github.com/EliverLara/Ant)
