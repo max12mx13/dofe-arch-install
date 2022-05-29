@@ -63,8 +63,8 @@ The distro that will be installed is [arch linux](https://archlinux.org/) and it
 sudo pacman -Syu git 
 git clone https://github.com/max12mx13/dofe-arch-install.git
 cd dofe-arch-install
-chmod +x curses.sh
-./curses.sh
+chmod +x pre-install.sh 
+./pre-install.sh
 ```
 
 ## TODO
