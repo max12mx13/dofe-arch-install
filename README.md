@@ -91,7 +91,9 @@ cd Documents
 - [ ] Final testing in vm and recording
 
 ## Films of tests
-**Coming soon to a cinema near you!**
+### Install in vm
+<img src="assets/untitled.gif" width="40" height="40" />
+
 ## Credits
 [Ant](https://github.com/EliverLara/Ant)
 
