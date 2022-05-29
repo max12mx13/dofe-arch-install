@@ -19,10 +19,10 @@ choice=$(dialog --radiolist "Themes" 15 30 6 \
 	"6" "Gruvbox-dark" OFF \
 	3>&1 1>&2 2>&3 3>&- )
 
-## Installing and enabling shell thems
-mkdir -p ~/.local/share/gnome-shell/extensions 
-cp -r user-theme@gnome-shell-extensions.gcampax.github.com ~/.local/share/gnome-shell/extensions
+dialog --colors --infobox "\Z5 First, we will install gnome" 4 30
+sleep 2
 
+pacman -Sy --noconfirm gnome gnome-tweaks
 
 if [ $choice = 1 ]; then
 	

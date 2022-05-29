@@ -87,7 +87,7 @@ cd Documents
 - [ ] Make themes catppuccin, ant and gruvbox accessible
 - [ ] Documenting and debugging code
 ### Final configuration
-- [ ] Stow'ing config
+- [ ] Installation of other apps, e.g firefox
 - [ ] Final testing in vm and recording
 
 ## Films of tests
