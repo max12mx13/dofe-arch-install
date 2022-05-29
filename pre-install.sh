@@ -39,7 +39,7 @@ mkfs.fat -F 32 /dev/vda1
 mount /dev/vda2 /mnt
 
 #install needed packages in new install
-pacstrap /mnt base linux linux-firmware linux-headers vim networkmanager sudo git grub os-prober efibootmgr xdg-user-dirs
+pacstrap /mnt base linux linux-firmware linux-headers base-devel vim networkmanager sudo git grub os-prober efibootmgr xdg-user-dirs
 
 #mount efi
 mkdir /mnt/boot/efi
