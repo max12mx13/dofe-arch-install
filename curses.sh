@@ -86,7 +86,7 @@ Section "InputClass"
 EndSection
 END
 
-grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 sudo sed -e s/quiet//g -i /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
