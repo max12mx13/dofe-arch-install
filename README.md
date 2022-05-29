@@ -1,6 +1,6 @@
 # dofe-arch-install
 ## Description
-This is a script that is written for my [DofE](https://www.dofe.org/) skills (coding). There are two scripts, one for pre-install (to install) and one for post-install (to configure).
+This is a script that is written for my [DofE](https://www.dofe.org/) skills (coding). There are two scripts, one for install and one for post-install (to configure).
 
 In both scripts options will be presented to the user. In the install script these options are: 
 * Username
@@ -10,10 +10,10 @@ In both scripts options will be presented to the user. In the install script the
 
 In the configuration script the user will be asked which themes they want to install and which theme they want enabled by default.
 
-The distro that will be installed is [arch linux](https://archlinux.org/) and it is a very minimalistic and customizable distribution of linux which is why I have chosen it for this project.
+The distro that will be installed is [arch linux](https://archlinux.org/). It is a very minimalistic and customizable distribution of linux which is why I have chosen it for this project.
 
 ### Themes
-<p align="center">These are the themes available:</p> 
+<p align="center">These are the 6 themes available:</p> 
 <p align="center">Catppuccin:</p>
 <p align="center">
 
@@ -35,7 +35,7 @@ The distro that will be installed is [arch linux](https://archlinux.org/) and it
 </p>
 
 
-<p align="center"Ant-dracula:</p>
+<p align="center">Ant-dracula:</p>
 <p align="center">
 
 ![Ant-dracula theme display](assets/ant-dracula.png)

@@ -10,7 +10,7 @@ sleep 2
 dialog --colors --infobox "\Z5 It will install a selected theme, please check the github for what they look like" 6 30
 sleep 2
 
-choice=$(dialog --radiolist "vim" 30 30 6 \
+choice=$(dialog --radiolist "Themes" 15 30 6 \
       	"1" "Catpuccin" OFF \
 	"2" "Nordic" OFF \
 	"3" "Arc-dark" OFF \
