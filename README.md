@@ -61,7 +61,7 @@ The distro that will be installed is [arch linux](https://archlinux.org/). It is
 ## Setting up and executing the scripts
 #### This in the live usb
 ```bash
-sudo pacman -Syu git 
+sudo pacman -Sy git 
 git clone https://github.com/max12mx13/dofe-arch-install.git
 cd dofe-arch-install
 chmod +x pre-install.sh 
