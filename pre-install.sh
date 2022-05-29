@@ -96,5 +96,8 @@ EOF
 
 #chroot exited
 
+#setting up post install
+cp dofe-arch-install/post-install.sh /mnt/home/${username}/Documents/
+
 #unmount all partitions
 umount -a 

@@ -59,12 +59,18 @@ The distro that will be installed is [arch linux](https://archlinux.org/) and it
 * This is only built to work on a live arch linux USB (in a virtual machine or bare metal)
 * This means you should **NOT** attempt to use it on windows or mac-os
 ## Setting up and executing the scripts
+#### This in the live usb
 ```bash
 sudo pacman -Syu git 
 git clone https://github.com/max12mx13/dofe-arch-install.git
 cd dofe-arch-install
 chmod +x pre-install.sh 
 ./pre-install.sh
+```
+#### This once installed
+```bash
+cd Documents
+./post-install.sh
 ```
 
 ## TODO
