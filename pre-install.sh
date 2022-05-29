@@ -32,13 +32,11 @@ esac
 sleep 4
 
 #make the file systems
-mkfs.ext4 /dev/vda3
-mkswap /dev/vda2
+mkfs.ext4 /dev/vda2
 mkfs.fat -F 32 /dev/vda1
 
 #mount root and swap 
-mount /dev/vda3 /mnt
-swapon /dev/vda2
+mount /dev/vda2 /mnt
 
 #install needed packages in new install
 pacstrap /mnt base linux linux-firmware linux-headers vim networkmanager sudo git grub os-prober efibootmgr xdg-user-dirs
