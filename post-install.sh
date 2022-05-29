@@ -48,7 +48,7 @@ if [ $choice = 1 ]; then
 	git clone https://github.com/catppuccin/gtk.git
 	cp gtk/src/main/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk.css
 	gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-purple"
-	gsettings set org.gnome.desktop.wm.preferences theme "Catppuccin-purple"
+	dconf write /org/gnome/shell/extensions/user-theme/name "'Catppuccin-purple'"
 
 elif [ $choice = 2 ]; then
 	cd /tmp
@@ -59,7 +59,7 @@ elif [ $choice = 2 ]; then
 	git clone https://github.com/EliverLara/Nordic.git
 	cp Nordic/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk.css
 	gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
-	gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
+	dconf write /org/gnome/shell/extensions/user-theme/name "'Nordic'"
 
 elif [ $choice = 3 ]; then
 elif [ $choice = 4 ]; then
