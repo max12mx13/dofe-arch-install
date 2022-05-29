@@ -80,7 +80,7 @@ cd Documents
 - [x] First bits of the install script (Disks and installing base)
 - [x] Finishing install script (other stuff in a chroot)
 - [x] Documenting and debugging code
-- [ ] Testing in a vm and recording
+- [x] Testing in a vm and recording
 ### Theming
 - [ ] Create TUI for theming options
 - [ ] Make themes arc,nordic and dracula accessible
