@@ -28,17 +28,31 @@ sudo systemctl enable gdm
 # Enabling shell-themes
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
 
+# Preparing themes folder
+mkdir ~/.config/gtk-4.0/
+
 if [ $choice = 1 ]; then
 	cd /tmp 
 	git clone https://aur.archlinux.org/catppuccin-gtk-theme.git
+	cd catppuccin-gtk-theme
 	makepkg --noconfirm -si
+	cd /tmp
 	git clone https://github.com/catppuccin/gtk.git
-	mkdir ~/.config/gtk-4,0/gtk.css
-	cd gtk/src/main/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk.css
+	cp gtk/src/main/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk.css
 	gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-purple"
 	gsettings set org.gnome.desktop.wm.preferences theme "Catppuccin-purple"
+
 elif [ $choice = 2 ]; then
-	echo who
+	cd /tmp
+	git clone https://aur.archlinux.org/nordic-theme.git	
+	cd nordic-theme
+	makepkg --noconfirm -si
+	cd /tmp
+	git clone https://github.com/EliverLara/Nordic.git
+	cp Nordic/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk.css
+	gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
+	gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
+
 elif [ $choice = 3 ]; then
 elif [ $choice = 4 ]; then
 elif [ $choice = 5 ]; then
