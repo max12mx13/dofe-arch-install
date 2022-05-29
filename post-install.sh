@@ -3,6 +3,14 @@
 #Installing dialog
 # sudo pacman --noconfirm -Sy dialog
 
+## Root or not
+
+if [[ $(id -u) -eq 0 ]] ; then
+	dialog --colors --infobox "\Z5 Please do not run this script as root" 4 30
+	sleep 2
+	exit 1 
+fi
+
 #options and info
 dialog --colors --infobox "\Z5 This is the post-install script for my dofe!" 4 30
 sleep 2
