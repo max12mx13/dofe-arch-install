@@ -5,7 +5,7 @@ gnome() {
 	dialog --colors --infobox "\Z5 First, we will install gnome" 4 30
 	sleep 2
 
-	# sudo pacman -Sy --noconfirm gnome gnome-tweaks 
+	# sudo pacman -Syu --noconfirm gnome gnome-tweaks 
 	# sudo systemctl enable gdm
 
 	# Enabling shell-themes
@@ -36,7 +36,7 @@ gnome() {
 		dconf write /org/gnome/shell/extensions/user-theme/name "'Nordic'"
 
 	elif [ $1 = 3 ]; then
-		sudo pacman --noconfirm -Sy arc-gtk-theme
+		sudo pacman --noconfirm -Syu arc-gtk-theme
 		gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
 		dconf write /org/gnome/shell/extensions/user-theme/name "'Arc-Dark'"
 
@@ -69,10 +69,10 @@ gnome() {
 
 appsinstall(){
 	if [[ *"$1"* =~ "chromium" ]]; then
-		sudo pacman --noconfirm -Sy chromium
+		sudo pacman --noconfirm -Syu chromium
 	fi
 	if [[ *"$1"* =~ "firefox" ]]; then
-		sudo pacman --noconfirm -Sy firefox
+		sudo pacman --noconfirm -Syu firefox
 	fi
 	if [[ *"$1"* =~ "onlyoffice" ]]; then
 		cd /tmp
@@ -81,27 +81,27 @@ appsinstall(){
 		makepkg --noconfirm -si
 	fi
 	if [[ *"$1"* =~ "libreoffice" ]]; then
-		sudo pacman --noconfirm -Sy libreoffice-still
+		sudo pacman --noconfirm -Syu libreoffice-still
 	fi
 	if [[ *"$1"* =~ "lutris" ]]; then
-		sudo pacman --noconfirm -Sy lutris
+		sudo pacman --noconfirm -Syu lutris
 	fi
 	if [[ *"$1"* =~ "steam" ]]; then
-		sudo pacman --noconfirm -Sy
+		sudo pacman --noconfirm -Syu
 	fi
 	if [[ *"$1"* =~ "vscode" ]]; then
-		sudo pacman --noconfirm -Sy code
+		sudo pacman --noconfirm -Syu code
 	fi
 	if [[ *"$1"* =~ "atom" ]]; then
-		sudo pacman --noconfirm -Sy atom
+		sudo pacman --noconfirm -Syu atom
 	fi
 	if [[ *"$1"* =~ "cmatrix" ]]; then
-		sudo pacman --noconfirm -Sy cmatrix
+		sudo pacman --noconfirm -Syu cmatrix
 	fi
 
 }
 #Installing dialog
-# sudo pacman --noconfirm -Sy dialog
+# sudo pacman --noconfirm -Syu dialog
 
 ## Root or not
 
