@@ -87,7 +87,8 @@ appsinstall(){
 		sudo pacman --noconfirm -Syu lutris
 	fi
 	if [[ *"$1"* =~ "steam" ]]; then
-		sudo pacman --noconfirm -Syu
+		sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+		sudo pacman --noconfirm -Syu steam
 	fi
 	if [[ *"$1"* =~ "vscode" ]]; then
 		sudo pacman --noconfirm -Syu code
