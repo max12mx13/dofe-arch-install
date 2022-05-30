@@ -88,3 +88,5 @@ elif [ $choice = 6 ]; then
 	dconf write /org/gnome/shell/extensions/user-theme/name "'Gruvbox-Material-Dark'"
 
 fi
+
+dialog --colors --infobox "\Z5 Now you should reboot and you will be greeted with GDM" 5 30
