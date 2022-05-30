@@ -27,10 +27,25 @@ choice=$(dialog --radiolist "Themes" 15 30 6 \
 	"6" "Gruvbox-dark" OFF \
 	3>&1 1>&2 2>&3 3>&- )
 
+dialog --colors --infobox "\Z5 Next, lets install some apps!" 4 30
+sleep 2
+
+apps=$(dialog --checklist "Apps" 15 50 10\
+	"chromium" "Web browser" OFF \
+	"firefox" "Web browser" OFF \
+	"onlyoffice" "Office suite" OFF \
+	"libreoffice" "Office suite" OFF \
+	"lutris" "Gaming" OFF \
+	"steam" "Gaming" OFF \
+	"vscode" "Development" OFF \
+	"atom" "Development" OFF \
+	"cmatrix" "Misc" OFF 3>&1 1>&2 2>&3 ) 
+
 dialog --colors --infobox "\Z5 First, we will install gnome" 4 30
 sleep 2
 
-sudo pacman -Sy --noconfirm gnome gnome-tweaks
+## Gnome stufff
+sudo pacman -Sy --noconfirm gnome gnome-tweaks 
 sudo systemctl enable gdm
 
 # Enabling shell-themes
@@ -40,7 +55,6 @@ gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
 mkdir ~/.config/gtk-4.0/
 
 cd /tmp
-
 if [ $choice = 1 ]; then
 	git clone https://aur.archlinux.org/catppuccin-gtk-theme.git
 	cd catppuccin-gtk-theme
@@ -89,4 +103,6 @@ elif [ $choice = 6 ]; then
 
 fi
 
+## Apps stufff
+if [ $apps
 dialog --colors --infobox "\Z5 Now you should reboot and you will be greeted with GDM" 5 30
