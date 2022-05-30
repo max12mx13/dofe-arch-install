@@ -81,9 +81,9 @@ cd Documents
 - [x] Documenting and debugging code
 - [x] Testing in a vm and recording
 ### Theming
-- [ ] Create TUI for theming options
-- [ ] Make themes arc,nordic and dracula accessible
-- [ ] Make themes catppuccin, ant and gruvbox accessible
+- [x] Create TUI for theming options
+- [x] Make themes arc,nordic and dracula accessible
+- [x] Make themes catppuccin, ant and gruvbox accessible
 - [ ] Documenting and debugging code
 ### Final configuration
 - [ ] Installation of other apps, e.g firefox

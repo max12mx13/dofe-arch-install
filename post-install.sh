@@ -1,7 +1,7 @@
 # post-install script
 
 #Installing dialog
-# sudo pacman --noconfirm -Sy dialog
+sudo pacman --noconfirm -Sy dialog
 
 ## Root or not
 
@@ -39,29 +39,52 @@ gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
 # Preparing themes folder
 mkdir ~/.config/gtk-4.0/
 
+cd /tmp
+
 if [ $choice = 1 ]; then
-	cd /tmp 
 	git clone https://aur.archlinux.org/catppuccin-gtk-theme.git
 	cd catppuccin-gtk-theme
 	makepkg --noconfirm -si
-	cd /tmp
-	git clone https://github.com/catppuccin/gtk.git
-	cp gtk/src/main/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk.css
+	# cd /tmp
+	# git clone https://github.com/catppuccin/gtk.git
+	# cp gtk/src/main/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk.css
 	gsettings set org.gnome.desktop.interface gtk-theme "Catppuccin-purple"
 	dconf write /org/gnome/shell/extensions/user-theme/name "'Catppuccin-purple'"
 
 elif [ $choice = 2 ]; then
-	cd /tmp
 	git clone https://aur.archlinux.org/nordic-theme.git	
 	cd nordic-theme
 	makepkg --noconfirm -si
-	cd /tmp
-	git clone https://github.com/EliverLara/Nordic.git
-	cp Nordic/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk.css
+	# cd /tmp
+	# git clone https://github.com/EliverLara/Nordic.git
+	# cp Nordic/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk.css
 	gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
 	dconf write /org/gnome/shell/extensions/user-theme/name "'Nordic'"
 
 elif [ $choice = 3 ]; then
+	sudo pacman --noconfirm -Sy arc-gtk-theme
+	gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
+	dconf write /org/gnome/shell/extensions/user-theme/name "'Arc-Dark'"
+
 elif [ $choice = 4 ]; then
+	git clone https://aur.archlinux.org/ant-gtk-theme.git
+	cd ant-gtk-theme
+	makepkg --noconfirm -si
+	gsettings set org.gnome.desktop.interface gtk-theme "Ant-Dracula"
+	dconf write /org/gnome/shell/extensions/user-theme/name "'Ant-Dracula'"
+
 elif [ $choice = 5 ]; then
+	git clone https://aur.archlinux.org/dracula-gtk-theme.git
+	cd dracula-gtk-theme
+	makepkg --noconfirm -si
+	gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
+	dconf write /org/gnome/shell/extensions/user-theme/name "'Dracula'"
+
 elif [ $choice = 6 ]; then
+	git clone https://aur.archlinux.org/gruvbox-material-theme-git.git
+	cd gruvbox-material-theme-git
+	makepkg --noconfirm -si
+	gsettings set org.gnome.desktop.interface gtk-theme "Gruvbox-Material-Dark"
+	dconf write /org/gnome/shell/extensions/user-theme/name "'Gruvbox-Material-Dark'"
+
+fi
