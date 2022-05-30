@@ -8,11 +8,21 @@ sleep 2
 ## disks
 sdavsvda=$(dialog --menu "Choose where we are installing to" 10 50 10 \
 	"sda" "A bare-metal install" \
-	"vda" "In a virtual machine" 3>&1 1>&2 2>&3 )
+	"vda" "In a virtual machine" \
+	"sdb" "An external drive" 3>&1 1>&2 2>&3 )
 
-dialog --colors --infobox "\Z5 First, lets start partitioning, the installer expects a /dev/${sdavsvda}1 to be an efi parition and /dev/${sdavsvda}2 to be root" 9 30
+dialog --colors --infobox "\Z5 First, lets start partitioning!" 4 30
 sleep 4
 cfdisk /dev/${sdavsvda}
+
+boot=$(dialog --colors --inputbox "\Z5 Enter the disk identifier for the boot partition (often /dev/${sdavsvda}1)" 8 50 \
+	3>&1 1>&2 2>&3 3>&-  )
+
+dialog --colors --yesno "\Z5 Do you want this partition to be formatted?" 6 50
+formatboot=$?
+
+root=$(dialog --colors --inputbox "\Z5 Now thats done, enter the disk identifier for the root partition " 8 50 \
+	3>&1 1>&2 2>&3 3>&-  )
 
 username=$(dialog --colors --inputbox "\Z5 What do you want your username to be" 10 38\
    3>&1 1>&2 2>&3 3>&-  )
@@ -38,17 +48,21 @@ esac
 sleep 4
 
 #make the file systems
-mkfs.ext4 /dev/${sdavsvda}2
-mkfs.fat -F 32 /dev/${sdavsvda}1
+mkfs.ext4 /dev/${root}
+
+if [ $formatboot -eq "0" ]; then
+	mkfs.fat -F 32 /dev/${boot}
+fi
+
 
 #mount root and swap 
-mount /dev/${sdavsvda}2 /mnt
+mount /dev/${root} /mnt
 
 #install needed packages in new install
 pacstrap /mnt base linux linux-firmware linux-headers base-devel vim networkmanager sudo git grub os-prober efibootmgr xdg-user-dirs
 
 #mount efi
-mount /dev/${sdavsvda}1 /mnt/boot/
+mount /dev/${boot} /mnt/boot/
 
 #generate the fstab 
 genfstab -U /mnt >> /mnt/etc/fstab
