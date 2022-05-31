@@ -8,7 +8,7 @@ encryptionpreinstall(){
 
 encryptionpostinstall(){
 	sed -i '/HOOKS/s/block/block encrypt keyboard /' /mnt/etc/mkinitcpio.conf	
-	deviceuuid=$(blkid | awk -F"[ ',]+" '/root:/{print $2}')
+	deviceuuid=$(blkid | awk -F"[ ',]+" '/${1}/{print $2}')
 	sed -i 'GRUB_CMDLINE_LINUX_DEFAULT=/s/quiet/cryptdevice=${deviceuuid}:root root=/dev/mapper/root' /mnt/etc/default/grub
 	cat << EOF | sudo arch-chroot /mnt 
 
@@ -72,7 +72,7 @@ sleep 4
 
 #make the file systems
 if [ $encrypted -eq "0" ]; then
-	encryption ${root} 
+	encryptionpreinstall ${root} 
 	mount /dev/mapper/root /mnt
 else
 	mkfs.ext4 ${root}
@@ -136,6 +136,10 @@ xdg-user-dirs-update
 EOF
 
 #chroot exited
+
+if [ $encrypted -eq "0" ]; then
+	encryptionpostinstall ${root}
+fi
 
 #setting up post install
 cp post-install.sh /mnt/home/${username}/Documents/
