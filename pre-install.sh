@@ -100,8 +100,6 @@ locale-gen
 
 echo -e "${hosname}" > /etc/hostname
 
-mkinitcpio -P
-
 systemctl enable NetworkManager 
 
 useradd -m -g users -G wheel,games,power,optical,storage,scanner,lp,audio,video,input,adm,users -s /bin/bash $username
@@ -123,7 +121,6 @@ EndSection
 END
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-grub-mkconfig -o /boot/grub/grub.cfg
 
 su ${username}
 cd
