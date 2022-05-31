@@ -1,10 +1,8 @@
-encryptionpreinstall(){
-	passwd=$(dialog --colors --inputbox "\Z5 Enter the encryption password that you want to use" 10 50 \
-		3>&1 1>&2 2>&3 3>&-  )
-	echo -en "${passwd}" | cryptsetup -v luksFormat $1
-	echo -en "${passwd}" | cryptsetup open $1 root
-	mkfs.ext4 /dev/mapper/root
-}
+passwd=$(dialog --colors --inputbox "\Z5 Enter the encryption password that you want to use" 10 50 \
+	3>&1 1>&2 2>&3 3>&-  )
+echo -en "${passwd}" | cryptsetup -v luksFormat $1
+echo -en "${passwd}" | cryptsetup open $1 root
+mkfs.ext4 /dev/mapper/root
 
 encryptionpostinstall(){
 	sed -i '/HOOKS/s/block/block encrypt keyboard /' /mnt/etc/mkinitcpio.conf	
@@ -44,7 +42,9 @@ dialog --colors --yesno "\Z5 Do you want this install to be encrypted?" 6 50
 encrypted=$?
 
 if [ $encrypted -eq "0" ]; then
-	encryptionpreinstall ${root} 
+	passwd=$(dialog --colors --inputbox "\Z5 Enter the encryption password that you want to use" 10 50 \
+	3>&1 1>&2 2>&3 3>&-  )
+e 
 fi
 
 username=$(dialog --colors --inputbox "\Z5 What do you want your username to be" 10 38\
@@ -72,8 +72,9 @@ sleep 4
 
 #make the file systems
 if [ $encrypted -eq "0" ]; then
+	echo -en "${passwd}" | cryptsetup -v luksFormat $1
+	echo -en "${passwd}" | cryptsetup open $1 root
 	mkfs.ext4 /dev/mapper/root
-	mount /dev/mapper/root /mnt
 else
 	mkfs.ext4 ${root}
 	mount ${root} /mnt
