@@ -10,12 +10,8 @@ encryptionpostinstall(){
 	sed -i '/HOOKS/s/block/block encrypt keyboard /' /mnt/etc/mkinitcpio.conf	
 	deviceuuid=$(blkid | awk -F"[ ',]+" '/${1}/{print $2}')
 	sed -i 'GRUB_CMDLINE_LINUX_DEFAULT=/s/quiet/cryptdevice=${deviceuuid}:root root=/dev/mapper/root' /mnt/etc/default/grub
-	cat << EOF | sudo arch-chroot /mnt 
-
-	mkinitcpio -P
-	grub-mkconfig -o /boot/grub/grub.cfg
-	
-	EOF
+	arch-chroot /mnt mkinitcpio -P
+	arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 }
 
 #Installing dialog
