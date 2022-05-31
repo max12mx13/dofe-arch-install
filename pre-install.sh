@@ -1,9 +1,3 @@
-passwd=$(dialog --colors --inputbox "\Z5 Enter the encryption password that you want to use" 10 50 \
-	3>&1 1>&2 2>&3 3>&-  )
-echo -en "${passwd}" | cryptsetup -v luksFormat $1
-echo -en "${passwd}" | cryptsetup open $1 root
-mkfs.ext4 /dev/mapper/root
-
 encryptionpostinstall(){
 	sed -i '/HOOKS/s/block/block encrypt keyboard /' /mnt/etc/mkinitcpio.conf	
 	deviceuuid=$(blkid $1 | awk -F"[ ',]+" '{print $2}')
