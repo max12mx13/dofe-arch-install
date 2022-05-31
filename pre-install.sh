@@ -2,13 +2,13 @@ encryptionpreinstall(){
 	passwd=$(dialog --colors --inputbox "\Z5 Enter the encryption password that you want to use" 10 50 \
 		3>&1 1>&2 2>&3 3>&-  )
 	echo -en "${passwd}" | cryptsetup -v luksFormat $1
-	echo -en "${passwd}" |  cryptsetup open $1 root
+	echo -en "${passwd}" | cryptsetup open $1 root
 	mkfs.ext4 /dev/mapper/root
 }
 
 encryptionpostinstall(){
 	sed -i '/HOOKS/s/block/block encrypt keyboard /' /mnt/etc/mkinitcpio.conf	
-	deviceuuid=$(blkid | awk -F"[ ',]+" '/${1}/{print $2}')
+	deviceuuid=$(blkid $1 | awk -F"[ ',]+" '{print $2}')
 	sed -i 'GRUB_CMDLINE_LINUX_DEFAULT=/s/quiet/cryptdevice=${deviceuuid}:root root=/dev/mapper/root' /mnt/etc/default/grub
 	arch-chroot /mnt mkinitcpio -P
 	arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
