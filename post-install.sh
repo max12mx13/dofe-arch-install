@@ -5,14 +5,14 @@ gnome() {
 	dialog --colors --infobox "\Z5 First, we will install gnome" 4 30
 	sleep 2
 
-	# sudo pacman -Syu --noconfirm gnome gnome-tweaks 
-	# sudo systemctl enable gdm
+	sudo pacman -Syu --noconfirm gnome gnome-tweaks 
+	sudo systemctl enable gdm
 
 	# Enabling shell-themes
-	# gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
+	gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
 
 	# Preparing themes folder
-	# mkdir ~/.config/gtk-4.0/
+	mkdir ~/.config/gtk-4.0/
 
 	# cd /tmp
 	if [ $1 = 1 ]; then
@@ -55,8 +55,6 @@ gnome() {
 		dconf write /org/gnome/shell/extensions/user-theme/name "'Dracula'"
 
 	elif [ $1 = 6 ]; then
-		dialog --colors --infobox "vim" 40 40 
-		sleep 10
 		git clone https://aur.archlinux.org/gruvbox-material-theme-git.git
 		cd gruvbox-material-theme-git
 		makepkg --noconfirm -si
