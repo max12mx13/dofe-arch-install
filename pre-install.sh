@@ -59,6 +59,7 @@ fi
 mount ${root} /mnt
 
 #mount boot
+mkdir /mnt/boot
 mount ${boot} /mnt/boot
 
 #install needed packages in new install
