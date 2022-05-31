@@ -102,7 +102,7 @@ appsinstall(){
 
 }
 #Installing dialog
-# sudo pacman --noconfirm -Syu dialog
+sudo pacman --noconfirm -Syu dialog
 
 ## Root or not
 
