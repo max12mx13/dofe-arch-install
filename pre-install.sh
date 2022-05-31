@@ -1,3 +1,8 @@
+encryption(){
+	cryptsetup -y -v luksFormat $1
+	cryptsetup open $1 root
+	mkfs.ext4 /dev/mapper/root
+}
 #Installing dialog
 sudo pacman --noconfirm -Sy dialog
 
@@ -24,6 +29,13 @@ formatboot=$?
 root=$(dialog --colors --inputbox "\Z5 Now thats done, enter the disk identifier for the root partition " 10 50 \
 	3>&1 1>&2 2>&3 3>&-  )
 
+dialog --colors --yesno "\Z5 Do you want this install to be encrypted?" 6 50
+encrypted=$?
+
+if [ $encrypted -eq "0" ]; then
+	encryption ${root} 
+fi
+
 username=$(dialog --colors --inputbox "\Z5 What do you want your username to be" 10 38\
    3>&1 1>&2 2>&3 3>&-  )
 
@@ -48,15 +60,16 @@ esac
 sleep 4
 
 #make the file systems
-mkfs.ext4 ${root}
+if [ $encrypted -eq "0" ]; then
+	mount /dev/mapper/root /mnt
+else
+	mkfs.ext4 ${root}
+	mount ${root} /mnt
+fi
 
 if [ $formatboot -eq "0" ]; then
 	mkfs.fat -F 32 ${boot}
 fi
-
-
-#mount root 
-mount ${root} /mnt
 
 #mount boot
 mkdir /mnt/boot
