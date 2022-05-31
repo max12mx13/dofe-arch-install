@@ -55,14 +55,14 @@ if [ $formatboot -eq "0" ]; then
 fi
 
 
-#mount root and swap 
+#mount root 
 mount ${root} /mnt
+
+#mount boot
+mount ${boot} /mnt/boot
 
 #install needed packages in new install
 pacstrap /mnt base linux linux-firmware linux-headers base-devel vim networkmanager sudo git grub os-prober efibootmgr xdg-user-dirs
-
-#mount efi
-mount ${boot} /mnt/boot/
 
 #generate the fstab 
 genfstab -U /mnt >> /mnt/etc/fstab
