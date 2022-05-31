@@ -1,8 +1,23 @@
-encryption(){
-	cryptsetup -y -v luksFormat $1
-	cryptsetup open $1 root
+encryptionpreinstall(){
+	passwd=$(dialog --colors --inputbox "\Z5 Enter the encryption password that you want to use" 10 50 \
+		3>&1 1>&2 2>&3 3>&-  )
+	echo -en "${passwd}" | cryptsetup -v luksFormat $1
+	echo -en "${passwd}" |  cryptsetup open $1 root
 	mkfs.ext4 /dev/mapper/root
 }
+
+encryptionpostinstall(){
+	sed -i '/HOOKS/s/block/block encrypt keyboard /' /mnt/etc/mkinitcpio.conf	
+	deviceuuid=$(blkid | awk -F"[ ',]+" '/root:/{print $2}')
+	sed -i 'GRUB_CMDLINE_LINUX_DEFAULT=/s/quiet/cryptdevice=${deviceuuid}:root root=/dev/mapper/root' /mnt/etc/default/grub
+	cat << EOF | sudo arch-chroot /mnt 
+
+	mkinitcpio -P
+	grub-mkconfig -o /boot/grub/grub.cfg
+	
+	EOF
+}
+
 #Installing dialog
 sudo pacman --noconfirm -Sy dialog
 
@@ -26,15 +41,11 @@ boot=$(dialog --colors --inputbox "\Z5 Enter the disk identifier for the boot pa
 dialog --colors --yesno "\Z5 Do you want this partition to be formatted?" 6 50
 formatboot=$?
 
-root=$(dialog --colors --inputbox "\Z5 Now thats done, enter the disk identifier for the root partition " 10 50 \
+root=$(dialog --colors --inputbox "\Z5 Now thats done, enter the disk identifier for the root partition" 10 50 \
 	3>&1 1>&2 2>&3 3>&-  )
 
 dialog --colors --yesno "\Z5 Do you want this install to be encrypted?" 6 50
 encrypted=$?
-
-if [ $encrypted -eq "0" ]; then
-	encryption ${root} 
-fi
 
 username=$(dialog --colors --inputbox "\Z5 What do you want your username to be" 10 38\
    3>&1 1>&2 2>&3 3>&-  )
@@ -61,6 +72,7 @@ sleep 4
 
 #make the file systems
 if [ $encrypted -eq "0" ]; then
+	encryption ${root} 
 	mount /dev/mapper/root /mnt
 else
 	mkfs.ext4 ${root}
@@ -115,7 +127,6 @@ EndSection
 END
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-sudo sed -e s/quiet//g -i /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 su ${username}
