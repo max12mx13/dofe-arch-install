@@ -43,6 +43,10 @@ root=$(dialog --colors --inputbox "\Z5 Now thats done, enter the disk identifier
 dialog --colors --yesno "\Z5 Do you want this install to be encrypted?" 6 50
 encrypted=$?
 
+if [ $encrypted -eq "0" ]; then
+	encryptionpreinstall ${root} 
+fi
+
 username=$(dialog --colors --inputbox "\Z5 What do you want your username to be" 10 38\
    3>&1 1>&2 2>&3 3>&-  )
 
@@ -68,7 +72,7 @@ sleep 4
 
 #make the file systems
 if [ $encrypted -eq "0" ]; then
-	encryptionpreinstall ${root} 
+	mkfs.ext4 /dev/mapper/root
 	mount /dev/mapper/root /mnt
 else
 	mkfs.ext4 ${root}
