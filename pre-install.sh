@@ -66,8 +66,8 @@ sleep 4
 
 #make the file systems
 if [ $encrypted -eq "0" ]; then
-	echo -en "${passwd}" | cryptsetup -v luksFormat $1
-	echo -en "${passwd}" | cryptsetup open $1 root
+	echo -en "${passwd}" | cryptsetup -v luksFormat $root
+	echo -en "${passwd}" | cryptsetup open $root root
 	mkfs.ext4 /dev/mapper/root
 else
 	mkfs.ext4 ${root}
