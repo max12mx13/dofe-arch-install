@@ -121,7 +121,7 @@ dialog --colors --infobox "\Z5 Cancel to skip this step" 3 30
 sleep 2
 
 choice=$(dialog --radiolist "Themes" 15 30 6 \
-      	"1" "Captpuccin" OFF \
+      	"1" "Catppuccin" OFF \
 	"2" "Nordic" OFF \
 	"3" "Arc-dark" OFF \
 	"4" "Ant-dracula" OFF \
