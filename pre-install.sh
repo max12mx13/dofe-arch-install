@@ -69,6 +69,7 @@ if [ $encrypted -eq "0" ]; then
 	echo -en "${passwd}" | cryptsetup -v luksFormat $root
 	echo -en "${passwd}" | cryptsetup open $root root
 	mkfs.ext4 /dev/mapper/root
+	mount /dev/mapper/root /mnt
 else
 	mkfs.ext4 ${root}
 	mount ${root} /mnt
