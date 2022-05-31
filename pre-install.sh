@@ -15,13 +15,13 @@ dialog --colors --infobox "\Z5 First, lets start partitioning!" 4 30
 sleep 4
 cfdisk /dev/${sdavsvda}
 
-boot=$(dialog --colors --inputbox "\Z5 Enter the disk identifier for the boot partition (often /dev/${sdavsvda}1)" 8 50 \
+boot=$(dialog --colors --inputbox "\Z5 Enter the disk identifier for the boot partition (often /dev/${sdavsvda}1)" 10 50 \
 	3>&1 1>&2 2>&3 3>&-  )
 
 dialog --colors --yesno "\Z5 Do you want this partition to be formatted?" 6 50
 formatboot=$?
 
-root=$(dialog --colors --inputbox "\Z5 Now thats done, enter the disk identifier for the root partition " 8 50 \
+root=$(dialog --colors --inputbox "\Z5 Now thats done, enter the disk identifier for the root partition " 10 50 \
 	3>&1 1>&2 2>&3 3>&-  )
 
 username=$(dialog --colors --inputbox "\Z5 What do you want your username to be" 10 38\
@@ -48,21 +48,21 @@ esac
 sleep 4
 
 #make the file systems
-mkfs.ext4 /dev/${root}
+mkfs.ext4 ${root}
 
 if [ $formatboot -eq "0" ]; then
-	mkfs.fat -F 32 /dev/${boot}
+	mkfs.fat -F 32 ${boot}
 fi
 
 
 #mount root and swap 
-mount /dev/${root} /mnt
+mount ${root} /mnt
 
 #install needed packages in new install
 pacstrap /mnt base linux linux-firmware linux-headers base-devel vim networkmanager sudo git grub os-prober efibootmgr xdg-user-dirs
 
 #mount efi
-mount /dev/${boot} /mnt/boot/
+mount ${boot} /mnt/boot/
 
 #generate the fstab 
 genfstab -U /mnt >> /mnt/etc/fstab
