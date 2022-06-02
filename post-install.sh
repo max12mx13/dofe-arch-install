@@ -97,7 +97,22 @@ appsinstall(){
 	if [[ *"$1"* =~ "cmatrix" ]]; then
 		sudo pacman --noconfirm -Syu cmatrix
 	fi
-
+	if [[ *"$1"* =~ "yay" ]]; then
+		cd /tmp
+		git clone https://aur.archlinux.org/yay
+		cd yay 
+		makepkg --noconfirm -si
+	fi
+	if [[ *"$1"* =~ "broadcom-wl" ]]; then
+		sudo pacman -Syu broadcom-wl-dkms
+	fi
+	if [[ *"$1"* =~ "nvidia-340" ]]; then
+		cd /tmp
+		git clone https://aur.archlinux.org/nvidia-340xx-utils
+		git clone https://aur.archlinux.org/nvidia-340xx-dkms
+		cd nvidia-340xx-utils && makepkg --noconfirm -si
+		cd ../nvidia-340xx-dkms && makepkg --noconfirm -si
+	fi
 }
 #Installing dialog
 sudo pacman --noconfirm -Syu dialog
@@ -140,7 +155,7 @@ fi
 dialog --colors --infobox "\Z5 Lets install some apps!" 4 30
 sleep 2
 
-apps=$(dialog --checklist "Apps" 15 50 10\
+apps=$(dialog --checklist "Apps" 20 50 13\
 	"chromium" "Web browser" OFF \
 	"firefox" "Web browser" OFF \
 	"onlyoffice" "Office suite" OFF \
@@ -149,6 +164,9 @@ apps=$(dialog --checklist "Apps" 15 50 10\
 	"steam" "Gaming" OFF \
 	"vscode" "Development" OFF \
 	"atom" "Development" OFF \
+	"yay" "Software" OFF \
+	"nvidia-340" "Drivers" OFF \
+	"broadcom-wl" "Drivers" OFF \
 	"cmatrix" "Misc" OFF 3>&1 1>&2 2>&3 ) 
 
 exitstatus=$?

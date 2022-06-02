@@ -107,9 +107,7 @@ useradd -m -g users -G wheel,games,power,optical,storage,scanner,lp,audio,video,
 echo -en "${password}\n${password}" | passwd $username
 echo -en "${rootpassword}\n${rootpassword}" | passwd
 
-sed -i "s/^# %wheel/%wheel/g" /etc/sudoers
-tee -a /etc/sudoers << END
-END
+sed -i -z "s/^# %wheel/%wheel/g" /etc/sudoers
 
 mkdir -p /etc/X11/xorg.conf.d && tee <<'END' /etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
 Section "InputClass"
